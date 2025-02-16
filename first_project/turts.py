@@ -1,13 +1,14 @@
 import turtle
-from  random import randint, sample
+from  random import randint, sample, shuffle
 from time import sleep
 
 odds = [-250, -200, -150, -100, -50, 50, 100, 150, 200, 250, 300]
+
 assign_odds = sample(odds, 4)
 
 real_odds = {
-    "blue": assign_odds[0],
-    "red" : assign_odds[1],
+    "red": assign_odds[0],
+    "blue" : assign_odds[1],
     "yellow": assign_odds[2],
     "purple": assign_odds[3]
 }
@@ -18,19 +19,19 @@ per = 0
 real_per = {}
 for color in real_odds:
     if real_odds[color] > 0:
-        per += 100 / (real_odds[color] + 100)
+        per = 100 / (real_odds[color] + 100)
         tot_win_per += per
         real_per[color] = per
     else:
-        per += abs(real_odds[color]) / (abs(real_odds[color]) + 100)
+        per = abs(real_odds[color]) / (abs(real_odds[color]) + 100)
         tot_win_per += per
         real_per[color] = per
 
 for color in real_per:
     real_per[color] = (real_per[color] / tot_win_per) * 100
-
+    print(f"{color}: {real_per[color]}%")
 for color in real_odds:
-    real_odds[color] = round((100 - real_per[color]) / real_per[color]) * 100
+    real_odds[color] = int(round((100 - real_per[color]) / real_per[color] * 100))
 
 assign_speed = {}
 for color in real_per:
@@ -38,13 +39,13 @@ for color in real_per:
 
 print("Gamble before we race our Turts!")
 print("Odds:")
-print(f"Red is {real_odds["red"]}")
-print(f"Blue is {real_odds["blue"]}")
-print(f"yellow is {real_odds["yellow"]}")
-print(f"purple is {real_odds["purple"]}")
+print(f"Red is {real_odds['red']}")
+print(f"Blue is {real_odds['blue']}")
+print(f"yellow is {real_odds['yellow']}")
+print(f"purple is {real_odds['purple']}")
 
 while True:
-    bet = input("Who would you like to bet on?")
+    bet = input("Who would you like to bet on? ")
     if bet.lower() in real_odds:
         break
     else:
@@ -52,7 +53,7 @@ while True:
 
 while True:
     try:
-        bet_amount = int(input("how much money would you like to bet?"))
+        bet_amount = int(input("how much money would you like to bet? "))
         break
     except ValueError:
         print("Your bet must be a number")
@@ -65,6 +66,8 @@ window.bgcolor('lightgreen')
 
 finline = 200
 turtle.penup()
+turtle.speed(0)
+turtle.tracer(0, None)
 turtle.goto(finline, 100)
 turtle.pendown()
 turtle.right(90)
