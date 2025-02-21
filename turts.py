@@ -57,7 +57,7 @@ for color in real_odds:
 #convert the odds to reflect a win total win percentage of 100%
 for color in real_per:
   real_per[color] = (real_per[color] / tot_win_per) * 100
-  print(f"{color}: {round(real_per[color], 2)}%")
+  #print(f"{color}: {round(real_per[color], 2)}%")
 for color in real_odds:
   real_odds[color] = int(round((100 - real_per[color]) / real_per[color] * 100))
 
@@ -66,7 +66,7 @@ for color in real_odds:
 assign_speed = {}
 for color in real_odds:
   assign_speed[color] = (10 - (round(real_odds[color] / 200)), 15 + (round(real_odds[color] / 400)))
-  print(f"{color}: {assign_speed[color]}")
+  #print(f"{color}: {assign_speed[color]}")
 
 print("Gamble before we race our Turts!")
 print("Odds:")
