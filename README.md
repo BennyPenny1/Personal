@@ -1,2 +1,2 @@
-# Pyclass
-Python Class for school
+# Learning
+where i do perosnal projects for learning
