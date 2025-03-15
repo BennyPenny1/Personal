@@ -1,11 +1,15 @@
 #include <iostream>
 
-#define MACRO(x) (x*x);
+#define MACRO(x) (x*x)
+
 using namespace std;
+
+inline int il(int x) {
+    return x * x; 
+}
 int main() {
     int x = 5;
-    inline int il(x) {return x * x};
-    cout << "macro " << MACRO(X) << endl;
+    cout << "macro " << MACRO(x) << endl;
     cout << "const " << il(x) << endl; 
 }
 
