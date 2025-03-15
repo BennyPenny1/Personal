@@ -5,7 +5,7 @@
 using namespace std;
 
 inline int il(int x) {
-    return x * x; 
+    return x * x;
 }
 int main() {
     int x = 5;
