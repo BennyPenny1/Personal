@@ -288,4 +288,4 @@ else:
   print("Your Turt lost :(")
   print(f"You lost ${bet_amount}, keep Gambling! Don't be a quitter!")
 sleep(5)
-turtle.done()
+turtle.bye()
