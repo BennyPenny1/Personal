@@ -7,32 +7,35 @@ class slist {
     }
     ~slist() {
         if (root == nullptr) {
-            delete root;
             return;
         }
         else {
             Node* trav = root;
-            Node* next = root->next;
             while (trav != nullptr) {
-                next = trav->next;
+                Node* temp = trav->next;
                 delete trav;
-                trav = next;
+                trav = temp;
             }
+            root = nullptr;
         }
         return;
     }
 
     void insert(int value) {
         Node* new_node = new Node();
+        new_node->data = value;
+        new_node->next = nullptr;
+
+
         if (root == nullptr) {
             root = new_node;
-            new_node->data = value;
-            new_node->next = nullptr;
         }
-        else{
-            new_node->next = root;
-            new_node->data = value;
-            root = new_node;
+        else {
+            Node* trav = root;
+            while (trav->next != nullptr) {
+                trav = trav->next;
+            }
+            trav->next = new_node;
         }
     }
 
@@ -41,10 +44,14 @@ class slist {
             std::cerr << "there is no slist to iterate through\n";
             return 1;
         }
-        Node* trav = root->next;
+
         Node* prev = root;
+        if (prev->data == value) {
+            root = prev->next;
+        }
+
+        Node* trav = root->next;
         while (trav != nullptr) {
-            std::cout << trav->data << "\n";
             if (trav->data == value) {
                 return trav->data;
             }
@@ -80,52 +87,74 @@ class slist {
         return 3;
     }
 
+
     int delete_by_value(const int value) {
         if (root == nullptr) {
             std::cerr << "there is no slist to iterate through\n";
             return 1;
         }
-        Node* cur = root->next;
-        Node* prev = root;
-        bool has_2 = false;
-        if (cur != nullptr) {
-            Node* next = cur->next;
-            has_2 = true;
-        }
         bool is_found = false;
-        if (has_2) {
-            while (next != nullptr) {
-                if (cur->data == value) {
-                    prev->next = next;
-                    delete cur;
-                    cur = next;
-                    next = next->next;
-                    is_found = true;
+
+        while (root->data == value) { // get root not to be the value
+            Node* temp = root;
+            delete root;
+            root = temp->next;
+            is_found = true;
+            if (root == nullptr) {
+                return value;
+            }
+        }
+        Node* prev = root;
+        Node* cur = root->next;
+        if (cur == nullptr) {
+            if (prev->data == value) {
+                delete prev;
+                root = nullptr;
+                return value;
+            }
+            else {
+                if (is_found) {
+                    return value;
                 }
-                else {
-                    prev = cur;
-                    cur = next;
-                    next->next;
+                else{
+                    std::cerr << "value not found\n";
+                    return 2;
                 }
             }
         }
-        if (prev->data == value) {
-            delete prev;
-            root = cur;
+        Node* next = cur->next;
+
+        while (next != nullptr) {
+            if (cur->data == value) {
+                prev->next = next;
+                delete cur;
+                cur = next;
+                next = next->next;
+                is_found = true;
+            }
+            else {
+                prev = cur;
+                cur = next;
+                next = next->next;
+            }
+
         }
         if (cur->data == value) {
             delete cur;
-            root = nullptr;
+            prev->next = nullptr;
+            is_found = true;
         }
-        }
+
         if (is_found) {
             return value;
         }
         else {
-            std::cerr << "value was not found";
+            std::cerr << "value was not found\n";
             return 2;
         }
     }
+
+
     int delete_by_index(int index) {
         if (index < 0) {
             std::cerr << "index must be more than zero\n";
@@ -135,14 +164,21 @@ class slist {
             std::cerr << "there is no slist to iterate through\n";
             return 2;
         }
-        Node* trav = root->next;
+
         Node* prev = root;
+        if (index == 0) {
+            root = prev->next;
+            int value = prev->data;
+            delete prev;
+            return value;
+        }
+        Node* trav = root;
         while (trav != nullptr) {
             if (index == 0) {
                 prev->next = trav->next;
-                int x = trav->data;
+                int value = trav->data;
                 delete trav;
-                return x;
+                return value;
             }
             else {
                 prev = trav;
@@ -153,11 +189,14 @@ class slist {
         std::cerr << "index is out of bounds\n";
         return 3;
     }
+
+
     private:
     struct Node {
         Node* next;
         int data;
     };
+
     Node* root;
 };
 
@@ -165,6 +204,16 @@ int main () {
     slist list;
     list.insert(5);
     list.insert(6);
-    std::cout<< list.get_by_index(0) << "\n";
-
+    list.insert(7);
+    list.insert(6);
+    list.insert(8);
+    list.insert(9);
+    std::cout << list.get_by_index(0) << "\n";
+    std::cout << "A\n";;
+    std::cout << list.get_by_index(1) << "\n";
+    std::cout << "B\n";
+    std:: cout << list.delete_by_index(2) << "\n";
+    std::cout << "C\n";
+    std::cout << list.get_by_index(2) << "\n";
+    list.~slist();
 }

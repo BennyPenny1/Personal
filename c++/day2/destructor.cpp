@@ -1,5 +1,7 @@
 #include <iostream>
 
+// this was not finished
+
 template <typename T> class slist {
     public:
      slist(T value) {
