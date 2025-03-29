@@ -1,0 +1,43 @@
+<style-scheme version="1.0" name="GitHub Dark Qt Custom">
+<style name="Text" foreground="#e6edf3" background="#000000"/>
+<style name="Link" foreground="#58a6ff"/>
+<style name="Selection" background="#3f3f3f"/>
+<style name="LineNumber" foreground="#6e7681" background="#0d1117" bold="true"/>
+<style name="CurrentLine" background="#161b22"/>
+<style name="CurrentLineNumber" foreground="#e6edf3" bold="true"/>
+<style name="Comment" foreground="#8b949e" italic="true"/>
+<style name="Keyword" foreground="#ff7b72"/>
+<style name="Preprocessor" foreground="#ff7b72"/>
+<style name="Macro" foreground="#d2a8ff"/>
+<style name="Type" foreground="#ffa657"/>
+<style name="PrimitiveType" foreground="#ff7b72"/>
+<style name="Function" foreground="#d2a8ff"/>
+<style name="String" foreground="#a5d6ff"/>
+<style name="Number" foreground="#79c0ff"/>
+<style name="Operator" foreground="#ff7b72"/>
+<style name="Punctuation" foreground="#56d364"/>
+<style name="Local" foreground="#e6edf3"/>
+<style name="Parameter" foreground="#ffa657"/>
+<style name="Global" foreground="#e6edf3"/>
+<style name="Field" foreground="#e6edf3"/>
+<style name="Attribute" foreground="#e6edf3"/>
+<style name="Property" foreground="#e6edf3"/>
+<style name="Parentheses" foreground="#f58727"/>
+<style name="ParenthesesMismatch" background="#f54e75"/>
+<style name="AutoComplete" foreground="#2c408a" background="#9aa7d6"/>
+<style name="DisabledCode" foreground="#444c56" background="#1f1f1f"/>
+<style name="VisualWhitespace" foreground="#484f58"/>
+<style name="OutputArgument" italic="true"/>
+<style name="AddedLine" foreground="#56d364"/>
+<style name="RemovedLine" foreground="#f85149"/>
+<style name="Info" underlineColor="#58a6ff" underlineStyle="DashUnderline"/>
+<style name="Warning" underlineColor="#ffa500" underlineStyle="SingleUnderline"/>
+<style name="Error" underlineColor="#ff0000" underlineStyle="SingleUnderline"/>
+<style name="IconsCodeModelVariableColor" foreground="#e6edf3"/>
+<style name="IconsCodeModelAttributeColor" foreground="#e6edf3"/>
+<style name="IconsCodeModelVaryingColor" foreground="#e6edf3"/>
+<style name="IconsCodeModelFunctionColor" foreground="#d2a8ff"/>
+<style name="ConstantLanguage" foreground="#58a6ff"/>
+<style name="EscapeSequence" foreground="#ff7b72"/>
+<style name="FormatSpecifier" foreground="#ff7b72"/>
+</style-scheme>
