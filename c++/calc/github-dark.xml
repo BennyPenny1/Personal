@@ -33,6 +33,7 @@
 <style name="Info" underlineColor="#58a6ff" underlineStyle="DashUnderline"/>
 <style name="Warning" underlineColor="#ffa500" underlineStyle="SingleUnderline"/>
 <style name="Error" underlineColor="#ff0000" underlineStyle="SingleUnderline"/>
+<style name="IconsCodeModelKeywordColor" foreground="ff7b72"/>
 <style name="IconsCodeModelVariableColor" foreground="#e6edf3"/>
 <style name="IconsCodeModelAttributeColor" foreground="#e6edf3"/>
 <style name="IconsCodeModelVaryingColor" foreground="#e6edf3"/>
@@ -40,4 +41,20 @@
 <style name="ConstantLanguage" foreground="#58a6ff"/>
 <style name="EscapeSequence" foreground="#ff7b72"/>
 <style name="FormatSpecifier" foreground="#ff7b72"/>
+<style name="Other" foreground="#a5d6ff"/>
+<style name="Default" foreground="#a5d6ff"/>
+<style name="Identifier" foreground="#a5d6ff"/>
+<style name="Unstyled" foreground="#e6edf3"/>
+<style name="QmlLocalId" foreground="#e6edf3"/>
+<style name="QmlExternalId" foreground="#e6edf3"/>
+<style name="QmlTypeId" foreground="#ff7b72"/>
+<style name="QmlRootObjectProperty" foreground="#58a6ff"/>
+<style name="QmlScopeObjectProperty" foreground="#58a6ff"/>
+<style name="QmlExternalObjectProperty" foreground="#58a6ff"/>
+<style name="QmlStateName" foreground="##58a6ff"/>
+<style name="JsScopeVar" foreground="#e6edf3"/>
+<style name="JsImportVar" foreground="#a5d6ff"/>
+<style name="JsGlobalVar" foreground="#a5d6ff"/>
+<style name="Binding" foreground="#a5d6ff"/>
+<style name="Overloaded Operator" foreground="#ff7b72"/>
 </style-scheme>

@@ -1,6 +1,6 @@
 [General]
 Includes=dark.figmatokens, 2024.tokenmapping
-ThemeName=Dark (2024)
+ThemeName=MyTheme
 PreferredStyles=
 DefaultTextEditorColorScheme=github-dark.xml
 DefaultToolbarStyle=Relaxed
