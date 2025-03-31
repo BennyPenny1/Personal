@@ -1,60 +1,94 @@
-<style-scheme version="1.0" name="GitHub Dark Qt Custom">
-<style name="Text" foreground="#e6edf3" background="#000000"/>
-<style name="Link" foreground="#58a6ff"/>
-<style name="Selection" background="#3f3f3f"/>
-<style name="LineNumber" foreground="#6e7681" background="#0d1117" bold="true"/>
-<style name="CurrentLine" background="#161b22"/>
-<style name="CurrentLineNumber" foreground="#e6edf3" bold="true"/>
-<style name="Comment" foreground="#8b949e" italic="true"/>
-<style name="Keyword" foreground="#ff7b72"/>
-<style name="Preprocessor" foreground="#ff7b72"/>
-<style name="Macro" foreground="#d2a8ff"/>
-<style name="Type" foreground="#ffa657"/>
-<style name="PrimitiveType" foreground="#ff7b72"/>
-<style name="Function" foreground="#d2a8ff"/>
-<style name="String" foreground="#a5d6ff"/>
-<style name="Number" foreground="#79c0ff"/>
-<style name="Operator" foreground="#ff7b72"/>
-<style name="Punctuation" foreground="#56d364"/>
-<style name="Local" foreground="#e6edf3"/>
-<style name="Parameter" foreground="#ffa657"/>
-<style name="Global" foreground="#e6edf3"/>
-<style name="Field" foreground="#e6edf3"/>
-<style name="Attribute" foreground="#e6edf3"/>
-<style name="Property" foreground="#e6edf3"/>
-<style name="Parentheses" foreground="#f58727"/>
-<style name="ParenthesesMismatch" background="#f54e75"/>
-<style name="AutoComplete" foreground="#2c408a" background="#9aa7d6"/>
-<style name="DisabledCode" foreground="#444c56" background="#1f1f1f"/>
-<style name="VisualWhitespace" foreground="#484f58"/>
-<style name="OutputArgument" italic="true"/>
-<style name="AddedLine" foreground="#56d364"/>
-<style name="RemovedLine" foreground="#f85149"/>
-<style name="Info" underlineColor="#58a6ff" underlineStyle="DashUnderline"/>
-<style name="Warning" underlineColor="#ffa500" underlineStyle="SingleUnderline"/>
-<style name="Error" underlineColor="#ff0000" underlineStyle="SingleUnderline"/>
-<style name="IconsCodeModelKeywordColor" foreground="ff7b72"/>
-<style name="IconsCodeModelVariableColor" foreground="#e6edf3"/>
-<style name="IconsCodeModelAttributeColor" foreground="#e6edf3"/>
-<style name="IconsCodeModelVaryingColor" foreground="#e6edf3"/>
-<style name="IconsCodeModelFunctionColor" foreground="#d2a8ff"/>
-<style name="ConstantLanguage" foreground="#58a6ff"/>
-<style name="EscapeSequence" foreground="#ff7b72"/>
-<style name="FormatSpecifier" foreground="#ff7b72"/>
-<style name="Other" foreground="#a5d6ff"/>
-<style name="Default" foreground="#a5d6ff"/>
-<style name="Identifier" foreground="#a5d6ff"/>
-<style name="Unstyled" foreground="#e6edf3"/>
-<style name="QmlLocalId" foreground="#e6edf3"/>
-<style name="QmlExternalId" foreground="#e6edf3"/>
-<style name="QmlTypeId" foreground="#ff7b72"/>
-<style name="QmlRootObjectProperty" foreground="#58a6ff"/>
-<style name="QmlScopeObjectProperty" foreground="#58a6ff"/>
-<style name="QmlExternalObjectProperty" foreground="#58a6ff"/>
-<style name="QmlStateName" foreground="##58a6ff"/>
-<style name="JsScopeVar" foreground="#e6edf3"/>
-<style name="JsImportVar" foreground="#a5d6ff"/>
-<style name="JsGlobalVar" foreground="#a5d6ff"/>
-<style name="Binding" foreground="#a5d6ff"/>
-<style name="Overloaded Operator" foreground="#ff7b72"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<style-scheme version="1.0" name="GitHub Dark">
+  <style name="Text" foreground="#e6edf3" background="#000000"/>
+  <style name="Link" foreground="#58a6ff"/>
+  <style name="Selection" background="#3f3f3f"/>
+  <style name="LineNumber" foreground="#6e7681" background="#0d1117" bold="true"/>
+  <style name="SearchResult" background="#ffef0b"/>
+  <style name="SearchResultAlt1" foreground="#000033" background="#b6ccff"/>
+  <style name="SearchResultAlt2" foreground="#330000" background="#ffb6cc"/>
+  <style name="SearchResultContainingFunction"/>
+  <style name="SearchScope" background="#f2f8fd"/>
+  <style name="Parentheses" foreground="#f58727"/>
+  <style name="ParenthesesMismatch" background="#f54e75"/>
+  <style name="AutoComplete" foreground="#2c408a" background="#9aa7d6"/>
+  <style name="CurrentLine" background="#161b22"/>
+  <style name="CurrentLineNumber" foreground="#e6edf3" bold="true"/>
+  <style name="Occurrences" background="#b4b4b4"/>
+  <style name="Occurrences.Unused" underlineColor="#808000" underlineStyle="SingleUnderline"/>
+  <style name="Occurrences.Rename" background="#ff6464"/>
+  <style name="Number" foreground="#79c0ff"/>
+  <style name="String" foreground="#a5d6ff"/>
+  <style name="Type" foreground="#ffa657"/>
+  <style name="Concept" foreground="#ffa657"/>
+  <style name="Namespace" foreground="#ffa657"/>
+  <style name="Local" foreground="#e6edf3"/>
+  <style name="Parameter" foreground="#ffa657"/>
+  <style name="Global" foreground="#e6edf3"/>
+  <style name="Field" foreground="#e6edf3"/>
+  <style name="Static" foreground="#58a6ff"/>
+  <style name="VirtualMethod" foreground="#d2a8ff" italic="true"/>
+  <style name="Function" foreground="#d2a8ff"/>
+  <style name="Keyword" foreground="#ff7b72"/>
+  <style name="PrimitiveType" foreground="#ff7b72"/>
+  <style name="Operator" foreground="#ff7b72"/>
+  <style name="Overloaded Operator" foreground="#ff7b72"/>
+  <style name="Punctuation" foreground="#56d364"/>
+  <style name="Preprocessor" foreground="#ff7b72"/>
+  <style name="Macro" foreground="#d2a8ff"/>
+  <style name="Label" foreground="#d2a8ff"/>
+  <style name="Attribute" foreground="#e6edf3"/>
+  <style name="Comment" foreground="#8b949e" italic="true"/>
+  <style name="Doxygen.Comment" foreground="#8b949e"/>
+  <style name="Doxygen.Tag" foreground="#8b949e"/>
+  <style name="VisualWhitespace" foreground="#484f58"/>
+  <style name="QmlLocalId" foreground="#e6edf3"/>
+  <style name="QmlExternalId" foreground="#ff7b72"/>
+  <style name="QmlTypeId" foreground="#ff7b72"/>
+  <style name="QmlRootObjectProperty" foreground="#58a6ff"/>
+  <style name="QmlScopeObjectProperty" foreground="#58a6ff"/>
+  <style name="QmlExternalObjectProperty" foreground="#58a6ff"/>
+  <style name="JsScopeVar" foreground="#e6edf3"/>
+  <style name="JsImportVar" foreground="#a5d6ff"/>
+  <style name="JsGlobalVar" foreground="#e6edf3"/>
+  <style name="QmlStateName" foreground="#ff7b72"/>
+  <style name="Binding" foreground="#a5d6ff"/>
+  <style name="DisabledCode" foreground="#444c56" background="#1f1f1f"/>
+  <style name="AddedLine" foreground="#56d364"/>
+  <style name="RemovedLine" foreground="#f85149"/>
+  <style name="DiffFile" foreground="#000080"/>
+  <style name="DiffLocation" foreground="#0000ff"/>
+  <style name="DiffFileLine" background="#ffff00"/>
+  <style name="DiffContextLine" background="#afd7e7"/>
+  <style name="DiffSourceLine" background="#ffdfdf"/>
+  <style name="DiffSourceChar" background="#ffafaf"/>
+  <style name="DiffDestLine" background="#dfffdf"/>
+  <style name="DiffDestChar" background="#afffaf"/>
+  <style name="LogChangeLine" foreground="#c00000"/>
+  <style name="LogAuthorName" foreground="#007af4"/>
+  <style name="LogCommitDate" foreground="#006600"/>
+  <style name="LogCommitHash" foreground="#ff0000"/>
+  <style name="LogCommitSubject"/>
+  <style name="LogDecoration" foreground="#ff00ff"/>
+  <style name="Info" underlineColor="#58a6ff" underlineStyle="DashUnderline"/>
+  <style name="InfoContext" underlineColor="#262088" underlineStyle="DotLine"/>
+  <style name="Warning" underlineColor="#ffa500" underlineStyle="SingleUnderline"/>
+  <style name="WarningContext" underlineColor="#ffbe00" underlineStyle="DotLine"/>
+  <style name="Error" underlineColor="#ff0000" underlineStyle="SingleUnderline"/>
+  <style name="ErrorContext" underlineColor="#ff0000" underlineStyle="DotLine"/>
+  <style name="Declaration" bold="true"/>
+  <style name="FunctionDefinition"/>
+  <style name="OutputArgument" italic="true"/>
+  <style name="StaticMember"/>
+  <style name="CocoCodeAdded"/>
+  <style name="CocoPartiallyCovered" foreground="#808000"/>
+  <style name="CocoNotCovered" foreground="#ff0000"/>
+  <style name="CocoFullyCovered" foreground="#00ff00"/>
+  <style name="CocoManuallyValidated" foreground="#0000ff"/>
+  <style name="CocoDeadCode" foreground="#ff00ff"/>
+  <style name="CocoExecutionCountTooLow" foreground="#ff0000"/>
+  <style name="CocoNotCoveredInfo" foreground="#ff0000"/>
+  <style name="CocoCoveredInfo" foreground="#00ff00"/>
+  <style name="CocoManuallyValidatedInfo" foreground="#0000ff"/>
+  <style name="LastStyleSentinel" foreground="#e6edf3"/>
 </style-scheme>
