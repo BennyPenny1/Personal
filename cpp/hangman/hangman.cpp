@@ -4,6 +4,10 @@
 #include <ctime>
 #include <cctype>
 
+
+std::string select_word();
+std::string generate_output(std::string letterGuesses, std::string secretWord);
+
 int main()
 {
     std::string wantToPlay;
@@ -11,7 +15,7 @@ int main()
     {
         std::cout << "Start Game? (Y/N) ";
         std::cin >> wantToPlay;
-        for (int i = 0; i < wantToPlay.size(); i++) // conert input to lower
+        for (int i = 0; i < wantToPlay.size(); i++) // convert input to lower
         {
             wantToPlay[i] = std::tolower(wantToPlay[i]);
         }
@@ -30,22 +34,81 @@ int main()
         }
     }
 
-    if (wantToPlay[0] == 'n')
+    if (wantToPlay[0] == 'n') // they dont want to play
     {
-        return;
+        return 1;
     }
-    else
+    else // they do want to play
     {
-        std::string secretWord = select_word(); // get the word
+        std::string secretWord = select_word(); // get the random word
         std::string letterGuesses;
         int strikes = 0;
         bool playerWon;
         std::string guessOutput;
+        std::string letterGuess;
 
-        while (strikes < 6 && !playerWon)
+        while (strikes < 6 && !playerWon) // if player wins or gets to mant strikes, game ends
         {
             guessOutput = generate_output(letterGuesses, secretWord);
+            std::cout << "strikes: " << strikes << "   " << guessOutput << '\n' << "guess? ";
+            std::cin >> letterGuess;
 
+            if (letterGuess.length() == 1 && isalpha(letterGuess[0])) // if they inputted a single letter
+            {
+                bool alreadyGuessed = false;
+                for (int i = 0; i < letterGuesses.length() - 1; i++) // check if they already guessed the letter
+                {
+                    if (letterGuess[0] == letterGuesses[i])
+                    {
+                        alreadyGuessed = true;
+                        std::cout << "you already guessed that lettter\n";
+                        break;
+                    }
+                }
+                if (!alreadyGuessed) // if they inputted a new letter
+                {
+                    bool guessIsRight = false;
+                    letterGuesses.push_back(letterGuess[0]); // add letter to their guesses
+                    for (int i = 0; i < secretWord.length() - 1; i++) // check if the guess is right
+                    {
+                        if (letterGuess[0] == secretWord[i])
+                        {
+                            guessIsRight = true;
+                            break;
+                        }
+                    }
+                    if (!guessIsRight)
+                    {
+                        strikes++;
+                    }
+                    bool letterWasGuessed = false;
+                    bool allLettersGuessed = true;
+                    for (int i = 0; i < secretWord.length() - 1; i++) // check if they have all of the letters
+                    {
+                        for (int j = 0; j < letterGuesses.length() - 1; j++)
+                        {
+                            if (letterGuesses[j] == secretWord[i])
+                            {
+                                letterWasGuessed = true;
+                                break;
+                            }
+                        }
+                        if (letterWasGuessed)
+                        {
+                            letterWasGuessed = false;
+                        }
+                        else // if there is a letter still unguessed
+                        {
+                            allLettersGuessed = false;
+                            break;
+                        }
+                    }
+                    if (allLettersGuessed)
+                    {
+                        playerWon = true;
+                    }
+                }
+            }
         }
     }
 
@@ -136,5 +199,6 @@ std::string generate_output(std::string letterGuesses, std::string secretWord)
     }
 
     guessOutput.pop_back(); // strip the last space
+    return guessOutput;
 }
 
