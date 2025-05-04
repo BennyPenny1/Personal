@@ -16,12 +16,13 @@ int main()
 
     if (!wantToPlay) // they dont want to play
     {
-        std::cout << "fine i didnt want to play either\n";
+        std::cout << "\nfine i didnt want to play either\n\n";
         return 1;
     }
     else // they do want to play
     {
         std::string secretWord = select_word(); // get the random word
+        std::cout << secretWord << '\n';
         std::string letterGuesses; // list of the letters they have guessed
         int strikes = 0;
         bool playerWon = false;
@@ -33,14 +34,88 @@ int main()
             guessOutput = generate_output(letterGuesses, secretWord);
             std::string guess = get_guess(letterGuesses, guessOutput, strikes);
 
-            if (guess.length() == 1)
+            if (guess.length() == 1) // if they guessed a letter
             {
-                for (int i = 0; i < secretWord.length(); i++)
+                bool guessWasRight = false;
+
+                for (int i = 0; i < secretWord.length(); i++) // check if guess is right
                 {
-                    // left off
+                    if (guess[0] == secretWord[i])
+                    {
+                        guessWasRight = true;
+                        break;
+                    }
+                }
+                if (!guessWasRight) // if guess wasnt right
+                {
+                    strikes++;
+                }
+                letterGuesses.push_back(guess[0]); // add guess to the guesses
+
+                bool AllLettersGuessed = true;
+                for (int i = 0; i < secretWord.length(); i++) // check if the person guessed all of the letters
+                {
+                    if (secretWord[i] == ' ')
+                    {
+                        continue;
+                    }
+
+                    bool letterWasGuessed = false;
+
+                    for (int j = 0; j < letterGuesses.length(); j++)
+                    {
+                        if (letterGuesses[j] == secretWord[i])
+                        {
+                            letterWasGuessed = true;
+                            break;
+                        }
+                    }
+                    if (!letterWasGuessed)
+                    {
+                        AllLettersGuessed = false;
+                        break;
+                    }
+                }
+                if (AllLettersGuessed)
+                {
+                    playerWon = true;
                 }
             }
 
+            else // if they guessed the whole sentance
+            {
+                bool guessWasNotRight = false;
+
+                if (guess.length() != secretWord.length())
+                {
+                    std::cout << "\n\ncheck how long that guess was...\n\n";
+                    continue;
+                }
+                for (int i = 0; i < secretWord.length(); i++)
+                {
+                    if (guess[i] != secretWord[i])
+                    {
+                        guessWasNotRight = true;
+                        break;
+                    }
+                }
+                if (guessWasNotRight)
+                {
+                    strikes++;
+                }
+                else // guess was right
+                {
+                    playerWon = true;
+                }
+            }
+        }
+        if (playerWon)
+        {
+            std::cout << "\nCongratulations!! You Won!\nthe word was " << secretWord << '\n';
+        }
+        else // if person got too many strikes
+        {
+            std::cout << "\nSowwy, looks like you lost :(\nthe word was " << secretWord << '\n';
         }
     }
 }
@@ -49,7 +124,7 @@ std::string select_word()
     std::vector<std::string> words = { // list of all possible words
         "hangman",
         "benjamin",
-        "cool guy"
+        "cool guy",
         "flying toaster",
         "angry cactus",
         "space waffle",
@@ -89,7 +164,7 @@ std::string select_word()
         "juggling octopus",
         "tripping elephant",
         "screaming muffin",
-        "sleepy volcano",
+        "sleepy volcano"
     };
 
     std::srand(std::time(nullptr)); // seed random generator
@@ -140,7 +215,7 @@ bool start_game()
         std::string input;
 
         std::cout << "Start Game? (Y/N) ";
-        std::cin >> input;
+        std::getline(std::cin, input);
 
         for (int i = 0; i < input.size(); i++) // convert input to lower
         {
@@ -157,7 +232,7 @@ bool start_game()
         }
         else
         {
-            std::cout << '\n' << "invalid input (Y/N), try again\n";
+            std::cout << "\n\ninvalid input (Y/N), try again\n\n";
         }
     }
 }
@@ -170,16 +245,26 @@ std::string get_guess(const std::string letterGuesses, const std::string guessOu
     while (true)
     {
         std::cout << "strikes: " << strikes << "   guesses: ";
-        for (int i = 0; i < letterGuesses.length() - 1; i ++)
+
+        if (letterGuesses.length() > 0)
         {
-            std::cout << letterGuesses[i] << ", ";
+            for (int i = 0; i < letterGuesses.length() - 1; i ++)
+            {
+                std::cout << letterGuesses[i] << ", ";
+            }
+            std::cout << letterGuesses.back();
         }
-        std::cout << letterGuesses.back() << "\n" << guessOutput << '\n' << "guess? ";
-        std::cin >> guess;
+        else
+        {
+            std::cout << "N/A";
+        }
+
+        std::cout << "\n\n" << guessOutput << "\n\n" << "guess? ";
+        std::getline(std::cin, guess);
 
         if (guess.length() <= 0) // check that they inputted something
         {
-            std::cout << "must input a letter or guess the whole phrase\n\n";
+            std::cout << "\n\nmust input a letter or guess the whole phrase\n\n";
             continue;
         }
 
@@ -187,15 +272,15 @@ std::string get_guess(const std::string letterGuesses, const std::string guessOu
         {
             if (!isalpha(guess[0]))
             {
-                std::cout << "must input a letter\n\n";
+                std::cout << "\n\nmust input a letter\n\n";
                 continue;
             }
 
-            for (int i = 0; i < letterGuesses.length() - 1; i++)
+            for (int i = 0; i < letterGuesses.length(); i++)
             {
                 if (guess[0] == letterGuesses[i]) // check that they hadnt already guessed the letter
                 {
-                    std::cout << "you already guessed that lettter\n\n";
+                    std::cout << "\n\nyou already guessed that lettter\n\n";
                     invalidInput = true;
                     break;
                 }
@@ -214,7 +299,7 @@ std::string get_guess(const std::string letterGuesses, const std::string guessOu
             {
                 if (!isalpha(guess[i]) && guess[i] != ' ') // check input is all letters
                 {
-                    std::cout << "letters only\n\n";
+                    std::cout << "\n\nletters only\n\n";
                     invalidInput = true;
                     break;
                 }
@@ -228,3 +313,4 @@ std::string get_guess(const std::string letterGuesses, const std::string guessOu
         }
     }
 }
+
