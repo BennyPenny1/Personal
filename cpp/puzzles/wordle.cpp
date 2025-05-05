@@ -158,6 +158,7 @@ bool load_set(std::unordered_set<std::string>& wordSet)
 std::string select_word(std::unordered_set<std::string>& wordSet)
 {
     std::vector<std::string> wordVec(wordSet.begin(), wordSet.end()); // convert unordered set to vector
+
     std::srand(std::time(nullptr)); // seed random generator
     int randomIndex = rand() % (wordVec.size()); // get the random index
     return wordVec[randomIndex];
