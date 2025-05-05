@@ -22,7 +22,7 @@ int main()
     else // they do want to play
     {
         std::string secretWord = select_word(); // get the random word
-        std::cout << secretWord << '\n';
+
         std::string letterGuesses; // list of the letters they have guessed
         int strikes = 0;
         bool playerWon = false;
@@ -64,7 +64,7 @@ int main()
 
                     for (int j = 0; j < letterGuesses.length(); j++)
                     {
-                        if (letterGuesses[j] == secretWord[i])
+                        if (std::tolower(letterGuesses[j]) == std::tolower(secretWord[i]))
                         {
                             letterWasGuessed = true;
                             break;
@@ -97,7 +97,7 @@ int main()
                 }
                 for (int i = 0; i < secretWord.length(); i++)
                 {
-                    if (guess[i] != secretWord[i])
+                    if (std::tolower(guess[i]) != std::tolower(secretWord[i]))
                     {
                         guessWasNotRight = true;
                         break;
@@ -127,49 +127,25 @@ int main()
 std::string select_word()
 {
     std::vector<std::string> words = { // list of all possible words
-        "hangman",
-        "benjamin",
+        "no diddy",
+        "p diddy",
         "cool guy",
-        "flying toaster",
-        "angry cactus",
-        "space waffle",
-        "awkward penguin",
-        "robot dentist",
-        "lost sock",
-        "tired wizard",
-        "sneezing panda",
-        "haunted taco",
-        "grumpy unicorn",
-        "banana phone",
-        "tiny tornado",
-        "secret potato",
-        "loud sandwich",
-        "bored dragon",
-        "melting snowman",
-        "hidden pickle",
-        "exploding marshmallow",
-        "pirate hamster",
-        "flamingo ballet",
-        "zombie coffee",
-        "moon cheese",
-        "nervous turtle",
-        "shouting broccoli",
-        "dancing spaghetti",
-        "cheeseburger planet",
-        "giggling ghost",
-        "broken broomstick",
-        "escaped donut",
-        "howling cat",
-        "suspicious pancake",
-        "whistling teapot",
-        "lazy ninja",
-        "stuck zipper",
-        "giant chicken",
-        "sparkling couch",
-        "juggling octopus",
-        "tripping elephant",
-        "screaming muffin",
-        "sleepy volcano"
+        "ben is cool",
+        "skibidi",
+        "Tralalero Tralala",
+        "Bombardiro Crocodilo",
+        "baby oil",
+        "skibidi toilet",
+        "Tung Tung Tung Tung Tung Tung Tung Tung Tung Sahur"
+        "Brr Brr Patapim",
+        "Chimpanzini Bananini",
+        "Bombombini Gusini",
+        "Capuccino Assassino",
+        "Trippi Troppi",
+        "Frigo Camelo",
+        "La Vaca Saturno Saturnita",
+        "Ballerina Cappucina"
+
     };
 
     std::srand(std::time(nullptr)); // seed random generator
@@ -273,8 +249,11 @@ std::string get_guess(const std::string letterGuesses, const std::string guessOu
             continue;
         }
 
+
         if (guess.length() == 1) // if they inputted a single letter
         {
+            guess = std::tolower(guess[0]); // tolower
+
             if (!isalpha(guess[0]))
             {
                 std::cout << "\n\nmust input a letter\n\n";

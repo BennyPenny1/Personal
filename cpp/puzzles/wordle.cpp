@@ -9,9 +9,9 @@
 
 bool load_set(std::unordered_set<std::string>& wordSet);
 std::string select_word(std::unordered_set<std::string>& wordSet);
-std::string generate_output(std::string letterGuesses, std::string secretWord);
+std::string generate_output(const std::vector<std::string> guesses, const std::string secretWord);
 bool start_game();
-std::string get_guess(const std::string letterGuesses, const std::string guessOutput, const int strikes);
+std::string get_guess(const std::vector<std::string> guesses, const std::string guessOutput, const int strikes);
 
 int main()
 {
@@ -22,117 +22,120 @@ int main()
         std::cout << "\nfine i didnt want to play either\n\n";
         return 1;
     }
-    else // they do want to play
+    // else start game
+
+    std::unordered_set<std::string> wordSet;
+    bool loaded = load_set(wordSet);
+    if (!loaded)
     {
-        std::unordered_set<std::string> wordSet;
-        bool loaded = load_set(wordSet);
-        if (!loaded)
-        {
-            std::cerr << "set was unsuccesfully loaded\n";
-            return 2;
-        }
-        std::string secretWord = select_word(wordSet); // get the random word
-        std::cout << secretWord << '\n';
-        std::string letterGuesses; // list of the letters they have guessed
-        int strikes = 0;
-        bool playerWon = false;
-        std::string guessOutput;
-        std::string letterGuess;
+        std::cerr << "set was unsuccesfully loaded\n";
+        return 2;
+    }
+    std::string secretWord = select_word(wordSet); // get the random word
+    std::cout << secretWord << '\n';
+    std::vector<std::string> guesses; // list of the guesses
+    int strikes = 0;
+    bool playerWon = false;
+    std::string guessOutput;
 
-        while (strikes < 6 && !playerWon) // if player wins or gets to many strikes, game ends
-        {
-            guessOutput = generate_output(letterGuesses, secretWord);
-            std::string guess = get_guess(letterGuesses, guessOutput, strikes);
+    std::cout << "Rules:\n1. if there is an X below the letter, that letter isnt in the word\n"
+    "2. if there is a Y (Yellow), that letter is in the word, but not in that spot\n"
+    "3. if there is a G (Green), that letter is in the right place\n\n";
 
-            if (guess.length() == 1) // if they guessed a letter
+    while (strikes < 6 && !playerWon) // if player wins or gets to many strikes, game ends
+    {
+        guessOutput = generate_output(guesses, secretWord);
+        std::string guess = get_guess(guesses, guessOutput, strikes);
+
+        if (guess.length() == 1) // if they guessed a letter
+        {
+            bool guessWasRight = false;
+
+            for (int i = 0; i < secretWord.length(); i++) // check if guess is right
             {
-                bool guessWasRight = false;
-
-                for (int i = 0; i < secretWord.length(); i++) // check if guess is right
+                if (guess[0] == secretWord[i])
                 {
-                    if (guess[0] == secretWord[i])
-                    {
-                        guessWasRight = true;
-                        break;
-                    }
-                }
-                if (!guessWasRight) // if guess wasnt right
-                {
-                    strikes++;
-                }
-                letterGuesses.push_back(guess[0]); // add guess to the guesses
-
-                bool AllLettersGuessed = true;
-                for (int i = 0; i < secretWord.length(); i++) // check if the person guessed all of the letters
-                {
-                    if (secretWord[i] == ' ')
-                    {
-                        continue;
-                    }
-
-                    bool letterWasGuessed = false;
-
-                    for (int j = 0; j < letterGuesses.length(); j++)
-                    {
-                        if (letterGuesses[j] == secretWord[i])
-                        {
-                            letterWasGuessed = true;
-                            break;
-                        }
-                    }
-                    if (!letterWasGuessed)
-                    {
-                        AllLettersGuessed = false;
-                        break;
-                    }
-                }
-                if (AllLettersGuessed)
-                {
-                    playerWon = true;
-                }
-                else
-                {
-                    std::cout << '\n';
+                    guessWasRight = true;
+                    break;
                 }
             }
-
-            else // if they guessed the whole sentance
+            if (!guessWasRight) // if guess wasnt right
             {
-                bool guessWasNotRight = false;
+                strikes++;
+            }
+            letterGuesses.push_back(guess[0]); // add guess to the guesses
 
-                if (guess.length() != secretWord.length())
+            bool AllLettersGuessed = true;
+            for (int i = 0; i < secretWord.length(); i++) // check if the person guessed all of the letters
+            {
+                if (secretWord[i] == ' ')
                 {
-                    std::cout << "\n\ncheck how long that guess was...\n\n";
                     continue;
                 }
-                for (int i = 0; i < secretWord.length(); i++)
+
+                bool letterWasGuessed = false;
+
+                for (int j = 0; j < letterGuesses.length(); j++)
                 {
-                    if (guess[i] != secretWord[i])
+                    if (letterGuesses[j] == secretWord[i])
                     {
-                        guessWasNotRight = true;
+                        letterWasGuessed = true;
                         break;
                     }
                 }
-                if (guessWasNotRight)
+                if (!letterWasGuessed)
                 {
-                    strikes++;
-                    std::cout << '\n';
-                }
-                else // guess was right
-                {
-                    playerWon = true;
+                    AllLettersGuessed = false;
+                    break;
                 }
             }
+            if (AllLettersGuessed)
+            {
+                playerWon = true;
+            }
+            else
+            {
+                std::cout << '\n';
+            }
         }
-        if (playerWon)
+
+        else // if they guessed the whole sentance
         {
-            std::cout << "\nCongratulations!! You Won!\nthe word was " << secretWord << '\n';
-        }
-        else // if person got too many strikes
-        {
-            std::cout << "\nSowwy, looks like you lost :(\nthe word was " << secretWord << '\n';
+            bool guessWasNotRight = false;
+
+            if (guess.length() != secretWord.length())
+            {
+                std::cout << "\n\ncheck how long that guess was...\n\n";
+                continue;
+            }
+            for (int i = 0; i < secretWord.length(); i++)
+            {
+                if (guess[i] != secretWord[i])
+                {
+                    guessWasNotRight = true;
+                    break;
+                }
+            }
+            if (guessWasNotRight)
+            {
+                strikes++;
+                std::cout << '\n';
+            }
+            else // guess was right
+            {
+                playerWon = true;
+            }
         }
     }
+    if (playerWon)
+    {
+        std::cout << "\nCongratulations!! You Won!\nthe word was " << secretWord << '\n';
+    }
+    else // if person got too many strikes
+    {
+        std::cout << "\nSowwy, looks like you lost :(\nthe word was " << secretWord << '\n';
+    }
+
 }
 bool load_set(std::unordered_set<std::string>& wordSet)
 {
@@ -164,35 +167,31 @@ std::string select_word(std::unordered_set<std::string>& wordSet)
     return wordVec[randomIndex];
 }
 
-std::string generate_output(const std::string letterGuesses, const std::string secretWord)
+std::string generate_output(const std::vector<std::string> guesses, const std::string secretWord)
 {
     std::string guessOutput;
-    for (int i = 0; i < secretWord.length(); i++)
+    for (int i = 0; i < guesses.size(); i++)
     {
-        if (secretWord[i] == ' ') // if space
+        bool letterGuessed = false;
+        for (int j = 0; j < 6; i++)
         {
-            guessOutput.push_back(' ');
-            guessOutput.push_back(' ');
+            std::cout << guesses[i][j];
         }
-        else // if letter
-        {
-            bool letterGuessed = false;
 
-            for (int j = 0; j < letterGuesses.length(); j++) // iterate through Player's guesses
+        for (int j = 0; j < 6; j++) // iterate through Player's guesses
+        {
+            if (secretWord[i] == guesses[i][j]) // player guessed the letter
             {
-                if (secretWord[i] == letterGuesses[j]) // player guessed the letter
-                {
-                    letterGuessed = true;
-                    guessOutput.push_back(letterGuesses[j]);
-                    guessOutput.push_back(' ');
-                    break;
-                }
-            }
-            if (!letterGuessed) // if the player hasnt guessed the letter
-            {
-                guessOutput.push_back('_');
+                letterGuessed = true;
+                guessOutput.push_back(letterGuesses[j]);
                 guessOutput.push_back(' ');
+                break;
             }
+        }
+        if (!letterGuessed) // if the player hasnt guessed the letter
+        {
+            guessOutput.push_back('_');
+            guessOutput.push_back(' ');
         }
     }
 
