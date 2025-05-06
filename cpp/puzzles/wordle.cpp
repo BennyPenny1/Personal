@@ -44,10 +44,12 @@ int main()
 
     while (strikes < 6 && !playerWon) // if player wins or gets to many strikes, game ends
     {
-        std::string guess = get_guess(guesses, guessOutput, wordSet);
         guessOutput = generate_output(guesses, secretWord);
+        std::cout << guessOutput;
+        /*std::string guess = get_guess(guesses, guessOutput, wordSet);
 
-        for (int i = 0; i < secretWord.length(); i++)
+        bool guessWasNotRight = false;
+        for (int i = 0; i < secretWord.length(); i++) // check if they got it right
         {
             if (guess[i] != secretWord[i])
             {
@@ -73,12 +75,12 @@ int main()
     else // if person got too many strikes
     {
         std::cout << "\nSowwy, looks like you lost :(\nthe word was " << secretWord << '\n';
-    }
+    */}
 
 }
 bool load_set(std::unordered_set<std::string>& wordSet)
 {
-    std::ifstream file("myWords.txt");
+    std::ifstream file("word_list.txt");
 
     if (!file)
     {
@@ -109,9 +111,11 @@ std::string select_word(std::unordered_set<std::string>& wordSet)
 std::string generate_output(const std::vector<std::string> guesses, const std::string secretWord)
 {
     std::string guessOutput;
+    std::cout << "output called\n";
 
     for (int i = 0; i < guesses.size(); i++)
     {
+        std::cout << "shouldnt be called";
         std::string hintOutput;
         for (int j = 0; j < guesses[i].length(); i++)
         {
