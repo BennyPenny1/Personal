@@ -213,7 +213,7 @@ bool start_game()
         }
         else
         {
-            std::cout << "\n\ninvalid input (Y/N), try again\n\n";
+            std::cout << "\ninvalid input (Y/N), try again\n\n";
         }
     }
 }
