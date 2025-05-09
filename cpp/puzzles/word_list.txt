@@ -982,7 +982,6 @@ humph
 humus
 hunch
 hunky
-hunter
 hurry
 husky
 hussy
@@ -1012,9 +1011,7 @@ indie
 inept
 inert
 infer
-infuse
 ingot
-inhale
 inlay
 inlet
 inner
@@ -1191,7 +1188,7 @@ meter
 metro
 micro
 midst
-mighty
+might
 mimic
 mince
 miner
@@ -1223,6 +1220,7 @@ motif
 motor
 motto
 moult
+mound
 mount
 mourn
 mouse
@@ -1237,7 +1235,6 @@ mummy
 munch
 mural
 murky
-muscle
 music
 musky
 musty
@@ -1266,7 +1263,6 @@ ninja
 ninny
 ninth
 noble
-nobody
 nodal
 noise
 noisy
@@ -1321,7 +1317,6 @@ ovary
 ovate
 overt
 ovine
-ovoid
 owing
 owner
 oxide
@@ -1340,6 +1335,7 @@ pared
 parka
 parry
 parse
+parts
 party
 pasta
 paste
@@ -1349,7 +1345,6 @@ patio
 patsy
 patty
 pause
-payee
 payer
 peace
 peach
@@ -1411,7 +1406,6 @@ poise
 poker
 polar
 polka
-pollen
 polyp
 pouch
 pound
@@ -1514,7 +1508,7 @@ recap
 recur
 redid
 reedy
-reel
+reels
 refer
 refit
 regal
@@ -1578,7 +1572,6 @@ rusty
 saber
 sable
 sabre
-sack
 sadly
 safer
 saggy
@@ -1632,7 +1625,6 @@ sedan
 seedy
 segue
 seize
-selfie
 sells
 semen
 sense
@@ -1744,6 +1736,7 @@ slung
 slunk
 slurp
 slyly
+smack
 small
 smart
 smash
@@ -1762,7 +1755,7 @@ snack
 snail
 snake
 snaky
-snap
+snaps
 snare
 snarl
 sneak
@@ -1772,7 +1765,6 @@ sniff
 snipe
 snoop
 snoot
-snooze
 snore
 snort
 snout
@@ -1920,7 +1912,7 @@ swamp
 swarm
 swash
 swath
-sway
+sways
 sweat
 sweep
 sweet
@@ -2070,12 +2062,12 @@ trust
 truth
 tryst
 tubal
-tube
+tubes
 tulip
 tumor
 tunic
 turbo
-turn
+turns
 tutor
 twang
 tweak
@@ -2110,7 +2102,7 @@ unzip
 upper
 upset
 urban
-urge
+urged
 urine
 usage
 usher
@@ -2252,3 +2244,9 @@ zesty
 zilch
 zonal
 zoned
+gyatt
+benny
+fanum
+sussy
+smurf
+fanta

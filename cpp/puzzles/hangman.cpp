@@ -128,7 +128,7 @@ std::string select_word()
 {
     std::vector<std::string> words = { // list of all possible words
         "no diddy",
-        "p diddy",
+        "P Diddy",
         "cool guy",
         "ben is cool",
         "skibidi",
@@ -136,7 +136,7 @@ std::string select_word()
         "Bombardiro Crocodilo",
         "baby oil",
         "skibidi toilet",
-        "Tung Tung Tung Tung Tung Tung Tung Tung Tung Sahur"
+        "Tung Tung Tung Tung Tung Tung Tung Tung Tung Sahur",
         "Brr Brr Patapim",
         "Chimpanzini Bananini",
         "Bombombini Gusini",
@@ -169,10 +169,10 @@ std::string generate_output(const std::string letterGuesses, const std::string s
 
             for (int j = 0; j < letterGuesses.length(); j++) // iterate through Player's guesses
             {
-                if (secretWord[i] == letterGuesses[j]) // player guessed the letter
+                if (tolower(secretWord[i]) == letterGuesses[j]) // player guessed the letter
                 {
                     letterGuessed = true;
-                    guessOutput.push_back(letterGuesses[j]);
+                    guessOutput.push_back(secretWord[i]);
                     guessOutput.push_back(' ');
                     break;
                 }
