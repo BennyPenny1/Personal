@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_set>
 #include <fstream>
+#include <unordered_map>
 
 bool start_game();
 bool load_set(std::unordered_set<std::string>& wordSet);
@@ -78,9 +79,17 @@ int main()
 std::string generate_output(const std::vector<std::string>& guesses, const std::string& secretWord)
 {
     std::string guessOutput;
+    std::unordered_map <char, int> secretWordLetterCount;
+
+
+    for (int i = 0; i < secretWord.length(); i++)
+    {
+        secretWordLetterCount[secretWord[i]] += 1;
+    }
 
     for (int i = 0; i < guesses.size(); i++)
     {
+        std::unordered_map <char, int> guessLetterCount;
         std::string hintOutput;
         for (int j = 0; j < guesses[i].length(); j++)
         {
@@ -91,6 +100,7 @@ std::string generate_output(const std::vector<std::string>& guesses, const std::
             {
                 hintOutput.push_back('G');
                 hintOutput.push_back(' ');
+                guessLetterCount[guesses[i][i]] += 1;
                 continue;
             }
             bool letterInWord = false;
@@ -98,9 +108,20 @@ std::string generate_output(const std::vector<std::string>& guesses, const std::
             {
                 if (guesses[i][j] == secretWord[k]) // check if letter is in the word at all
                 {
-                    hintOutput.push_back('Y');
-                    hintOutput.push_back(' ');
-                    letterInWord = true;
+                    if (guessLetterCount[guesses[i][j]] < secretWordLetterCount[secretWord[k]])
+                    {
+                        hintOutput.push_back('Y');
+                        hintOutput.push_back(' ');
+                        guessLetterCount[guesses[i][j]] += 1;
+                        letterInWord = true;
+                    }
+                    else
+                    {
+                        hintOutput.push_back('X');
+                        hintOutput.push_back(' ');
+                        letterInWord = true;
+                    }
+
                 }
                 if (letterInWord)
                 {

@@ -237,6 +237,7 @@ blush
 board
 boast
 bobby
+boink
 boney
 bongo
 bonus
@@ -605,7 +606,6 @@ druid
 drunk
 dryer
 dryly
-duchy
 duvet
 dwarf
 dwell
